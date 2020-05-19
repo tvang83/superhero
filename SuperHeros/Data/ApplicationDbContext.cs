@@ -12,7 +12,9 @@ namespace SuperHeros.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-            DbSet<>i.e. DbSet<PersonalDataAttribute>People
         }
+        //creating superhero database
+        public DbSet<Models.Superhero> Name { get; set; }
+
     }
 }
