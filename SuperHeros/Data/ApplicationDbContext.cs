@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using SuperHeros.Models;
 
 namespace SuperHeros.Data
 {
@@ -14,7 +15,8 @@ namespace SuperHeros.Data
         {
         }
         //creating superhero database
-        public DbSet<Models.Superhero> Name { get; set; }
+        public DbSet<Superhero> Superheros { get; set; }
 
     }
+
 }

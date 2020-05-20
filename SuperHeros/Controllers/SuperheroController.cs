@@ -2,18 +2,27 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Threading.Tasks.Dataflow;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SuperHeros.Data;
+using SuperHeros.Models;
 
 namespace SuperHeros.Controllers
 {           
     public class SuperheroController : Controller
     {
         //controller without scaffolding 
+        private readonly ApplicationDbContext _context;
+        public SuperheroController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
 
         // GET: Superhero
         public ActionResult Index()
         {
+            var superheros = _context.Superheros;
             return View();
         }
 
@@ -26,6 +35,7 @@ namespace SuperHeros.Controllers
         // GET: Superhero/Create
         public ActionResult Create()
         {
+
             return View();
         }
 
@@ -49,8 +59,18 @@ namespace SuperHeros.Controllers
         // GET: Superhero/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+
+            Superhero superhero = null;
+            foreach (Superhero s in SuperheroController(ApplicationDbContext context))
+                {
+                if(s.Id == id)
+                {
+                    superhero = s;
+                }
+            }
+            return View(superhero);
         }
+
 
         // POST: Superhero/Edit/5
         [HttpPost]
